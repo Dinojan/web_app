@@ -1,0 +1,21 @@
+# Enable error visibility (optional for debugging)
+php_flag display_errors On
+php_value error_reporting 32767
+
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks -MultiViews -Indexes
+    RewriteEngine On
+
+    # IMPORTANT: This must match your folder name on cPanel
+    # RewriteBase /
+    RewriteBase /web_app_1/
+
+    # Handle Authorization Header (for APIs)
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect requests to /public if not an existing file or folder
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [L,QSA]
+</IfModule>

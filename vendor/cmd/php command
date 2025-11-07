@@ -1,0 +1,5 @@
+# change permissions (0755,0644)
+    php vendor/cmd/fix_permissions.php
+    -OR -
+    http://localhost/web_app_1/fix_permissions?key=dino123
+
